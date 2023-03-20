@@ -9,7 +9,10 @@ import java.net.URL;
 import org.apache.commons.validator.routines.UrlValidator;
 
 
-
+/**
+ * CrawlURL class parses a URL and provides APIs for the WebCrawler to
+ * crawl the URL.
+ */
 public class CrawlURL {
     private static String[] customSchemes = { "http", "https" };
     private URI uri;
@@ -57,7 +60,7 @@ public class CrawlURL {
     }
 
     public String getUrlWithoutScheme() {
-        if (uri.getScheme() == "https") {
+        if (uri.getScheme().equals("https")) {
             return uri.toString().substring(8, uri.toString().length());
         } else {
             return uri.toString().substring(7, uri.toString().length());
