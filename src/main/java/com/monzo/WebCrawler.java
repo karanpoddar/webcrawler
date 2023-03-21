@@ -20,15 +20,13 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 /**
- * WebCrawler uses a provided list of domains regex and parses the HTML body.
- * The processing of the body can be defined by the user using the interface
- * class 'ProcessBody'
+ * WebCrawler uses a provided list of domains to crawl and parses the HTML body.
  * 
  * Parameters:
- *   - List of domains: List of domains to crawl. Eg: "monzo.com,*.monzo.com"
- *   - Depth: How much deep should the crawler go into a given starting domain.
+ *   - domains: List of domains to crawl. Eg: "monzo.com,blog.monzo.com"
+ *   - depth: How much deep should the crawler go into a given starting domain.
  *			  Default is -1 meaning no limit.
- *   - Delay: Pause time in Milliseconds. The crawler will pause by this amount
+ *   - delay: Pause time in Milliseconds. The crawler will pause by this amount
  *			  before hitting the domain again. Default is 1000 ms
  *   - threads: Number of threads to use for crawling. Default is 1
  *   - limitCrawling: If true, keep crawling within the provided top level domains.
