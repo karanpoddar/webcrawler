@@ -71,6 +71,9 @@ class WebCrawler {
     WebCrawler() {
     }
 
+    /**
+     * Parses the comma-separated input domains.
+     */
     private void parseInputDomains() {
         CSVReader reader = new CSVReader(new StringReader(domains));
         try {
@@ -87,6 +90,10 @@ class WebCrawler {
         return;
     }
 
+    /**
+     * Creates a thread pool and starts the crawling process.
+     * @throws InterruptedException
+     */
     private void startCrawling() throws InterruptedException {
         executor = Executors.newFixedThreadPool(numberOfThreads);
         executor.execute(() ->
@@ -96,6 +103,11 @@ class WebCrawler {
         executor.awaitTermination(Long.MAX_VALUE, TimeUnit.NANOSECONDS);
     }
 
+    /**
+     * Crawls the URLs present in the queue and processes it. It extracts all the
+     * URLs and puts the allowed ones in the queue.
+     * This method is executed by all the threads
+     */
     private void crawl() {
         while (!urlsToCrawl.isEmpty()) {
             CrawlURL url = urlsToCrawl.poll();
@@ -145,6 +157,12 @@ class WebCrawler {
         }
     }
 
+    /**
+     * Provides whether crawling a given URL is allowed or not.
+     * This is decided based on the input setting {{limitedCrawling}}.
+     * @param crawlURL
+     * @return
+     */
     boolean isAllowed(CrawlURL crawlURL) {
         if (limitedCrawling && !domainTimestamps.containsKey(crawlURL.getDomain())) {
             return false;
