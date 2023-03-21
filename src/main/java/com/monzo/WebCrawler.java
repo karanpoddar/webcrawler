@@ -157,7 +157,7 @@ class WebCrawler {
 
     /**
      * Provides whether crawling a given URL is allowed or not.
-     * This is decided based on the input setting {{limitedCrawling}}.
+     * This is decided based on the input setting {@limitedCrawling}.
      * @param crawlURL
      * @return
      */
