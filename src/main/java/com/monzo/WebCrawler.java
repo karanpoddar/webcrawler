@@ -133,7 +133,7 @@ class WebCrawler {
                         continue;
                     }
                     newCrawlUrl = urlMap.getOrDefault(newCrawlUrl.getUrlWithoutScheme(), newCrawlUrl);
-                    if (newCrawlUrl.getState() == URL_STATE.UNKNOWN && newCrawlUrl.getDepth() <= maxDepth) {
+                    if (newCrawlUrl.getState() == URL_STATE.UNKNOWN && (maxDepth == -1 || newCrawlUrl.getDepth() <= maxDepth)) {
                         urlsToCrawl.add(newCrawlUrl);
                         newCrawlUrl.setStateInQueue();
                         urlMap.put(newCrawlUrl.getUrlWithoutScheme(), newCrawlUrl);
